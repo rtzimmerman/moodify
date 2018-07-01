@@ -4,7 +4,11 @@ const Playlist = (props) => {
     
     const renderPlaylist = () => {
         return props.tracks.map((track) =>{
-            return <li key={track.id}>{track.name}</li>
+            return( 
+            <li key={track.id}>
+                <a href={track.external_urls.spotify}>{`${track.name} by ${track.artists[0].name}`}</a>
+            </li>
+            );
         });
     }
 

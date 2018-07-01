@@ -8,7 +8,7 @@ class MoodSelectionFormContainer extends Component {
 
         this.state = {
             genres: ['glam-rock'],
-            accessToken: 'BQDihzTa-dyZitVfirSNN5Vs6meMgpswuvFU6g2rBil93tH98V7VTplprIOAl41P6fkjM3SnPhayqE7HCk49l-CRRMgKEZ8NwrLHm89xkh4LykEm1pCaUb13oEfa93gV4SJF44yQ5PyfJSdgnYhNe7qmXzLlhaqV1HY',
+            accessToken: 'BQCiLxbeidrvgN9s7aNhNIiZZX86RJtv5HVj_pF8GJnA1zC2tmjXO-0PyKizt_xTc_eg59lz1CeM0-_ojuN6UdFo4_sRX5IE1SVzaNJaT7PnPiEFCVyBlF30JfvArmZZce4Psb3kAvV2HWirFI2b9IxiaSBiaLLQfCA',
         }
     }
     

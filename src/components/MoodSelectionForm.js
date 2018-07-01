@@ -7,6 +7,7 @@ class MoodSelectionForm extends Component {
     constructor(props){
         super(props);
         this.state = {
+            genre: 'acoustic',
             energy: 0,
             danceability: 0,
             tempo: 0,
@@ -15,31 +16,34 @@ class MoodSelectionForm extends Component {
         }
     }
 
-    handleEnergyChange = (event) => {
-        console.log(event.target.value);
+    handleGenreChange = (event) => {
 
-        this.setState({energy: event.target.value});
+    }
+
+    handleEnergyChange = (event) => {
+        const energy = event.target.value / 100;
+        this.setState({energy});
     }
 
     handleDanceabilityChange = (event) => {
-        console.log(event.target.value);
+        const danceability = event.target.value / 100;
 
-        this.setState({danceability: event.target.value});
+        this.setState({danceability});
     }
 
     handleTempoChange = (event) => {
-        console.log(event.target.value);
-        this.setState({tempo: event.target.value});
+        const tempo = event.target.value / 100;
+        this.setState({tempo});
     }
 
     handlePositivityChange = (event) => {
-        console.log(event.target.value);
-        this.setState({positivity: event.target.value});
+        const positivity = event.target.value / 100;
+        this.setState({positivity});
     }
 
     handleButtonClick = () => {
         console.log(this.state);
-        const accessToken = 'BQDihzTa-dyZitVfirSNN5Vs6meMgpswuvFU6g2rBil93tH98V7VTplprIOAl41P6fkjM3SnPhayqE7HCk49l-CRRMgKEZ8NwrLHm89xkh4LykEm1pCaUb13oEfa93gV4SJF44yQ5PyfJSdgnYhNe7qmXzLlhaqV1HY';
+        const accessToken = 'BQCiLxbeidrvgN9s7aNhNIiZZX86RJtv5HVj_pF8GJnA1zC2tmjXO-0PyKizt_xTc_eg59lz1CeM0-_ojuN6UdFo4_sRX5IE1SVzaNJaT7PnPiEFCVyBlF30JfvArmZZce4Psb3kAvV2HWirFI2b9IxiaSBiaLLQfCA';
 
         const baseUrl = 'https://api.spotify.com/v1/recommendations';
         var config = {
@@ -49,7 +53,7 @@ class MoodSelectionForm extends Component {
             }
         };
         // Make a request for list of genres
-        axios.get(`${baseUrl}?limit=10&market=US&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=acoustic&seed_tracks=0c6xIDDpzE81m2q797ordA&max_danceability=0.3&min_valence=0&max_valence=0.5&target_valence=0.1`, config)
+        axios.get(`${baseUrl}?limit=10&market=US&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=acoustic&seed_tracks=0c6xIDDpzE81m2q797ordA&max_danceability=${this.state.danceability}&max_valence=${this.state.positivity}&energy=${this.state.energy}`, config)
         .then((response) => {
             console.log(response.data.tracks);
             this.setState({tracks: response.data.tracks})
