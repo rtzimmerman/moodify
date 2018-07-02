@@ -17,33 +17,34 @@ class MoodSelectionForm extends Component {
     }
 
     handleGenreChange = (event) => {
-
+        const genre = event.target.value;
+        this.setState({genre});
     }
 
     handleEnergyChange = (event) => {
-        const energy = event.target.value / 100;
+        const energy = event.target.value / 100.000;
         this.setState({energy});
     }
 
     handleDanceabilityChange = (event) => {
-        const danceability = event.target.value / 100;
+        const danceability = event.target.value / 100.000;
 
         this.setState({danceability});
     }
 
     handleTempoChange = (event) => {
-        const tempo = event.target.value / 100;
+        const tempo = event.target.value / 100.000;
         this.setState({tempo});
     }
 
     handlePositivityChange = (event) => {
-        const positivity = event.target.value / 100;
+        const positivity = event.target.value / 100.000;
         this.setState({positivity});
     }
 
     handleButtonClick = () => {
         console.log(this.state);
-        const accessToken = 'BQCiLxbeidrvgN9s7aNhNIiZZX86RJtv5HVj_pF8GJnA1zC2tmjXO-0PyKizt_xTc_eg59lz1CeM0-_ojuN6UdFo4_sRX5IE1SVzaNJaT7PnPiEFCVyBlF30JfvArmZZce4Psb3kAvV2HWirFI2b9IxiaSBiaLLQfCA';
+        const accessToken = 'BQC0ttTSH52sE5g5TRkAC0VaCIPyuHmfFGKgViSFZl87PBgsaABXz4gt-sfyAXhQQCSDJECudtzKP_mBCpKnw1_Cyui8ZXPHyqAL5bqzb31NxSHC9dSXmgLA71f00qpsyv-7vVFrWrpCQslgP7VVx-xen-490Gv2eXA';
 
         const baseUrl = 'https://api.spotify.com/v1/recommendations';
         var config = {
@@ -52,8 +53,21 @@ class MoodSelectionForm extends Component {
               'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
+        //// &max_danceability=${this.state.danceability}
         // Make a request for list of genres
-        axios.get(`${baseUrl}?limit=10&market=US&seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=acoustic&seed_tracks=0c6xIDDpzE81m2q797ordA&max_danceability=${this.state.danceability}&max_valence=${this.state.positivity}&energy=${this.state.energy}`, config)
+        axios.get(`${baseUrl}?limit=10` +
+        `&market=US` +
+        // `&seed_artists=4NHQUGzhtTLFvgF5SZesLK` +
+        `&seed_genres=${this.state.genre}` +
+        // `&seed_tracks=0c6xIDDpzE81m2q797ordA` +
+        // `&max_popularity=1` +
+        `&min_valence=${0}` +
+        `&max_valence=${this.state.positivity + 5}` +
+        `&target_valence=${this.state.positivity}` +
+        `&min_energy=${0}` +
+        `&max_energy=${this.state.energy + 5}` +
+        `&target_energy=${this.state.energy}`
+        , config)
         .then((response) => {
             console.log(response.data.tracks);
             this.setState({tracks: response.data.tracks})
@@ -73,15 +87,15 @@ class MoodSelectionForm extends Component {
         return(
             <div className="mood-selection-form">
                 <h1>How are you feeling?</h1>
-                <select id="genrePicklist">
+                <select id="genrePicklist" onChange={this.handleGenreChange}>
                     {this.renderGenres()}
                 </select>
                 <label>Energy</label>
                 <input id="energy" type="range" name="energy" min="0" max="100" onInput={this.handleEnergyChange}/>
-                <label>Danceability</label>
-                <input id="danceability" type="range" name="danceability" min="0" max="100" onInput={this.handleDanceabilityChange}/>
-                <label>Tempo</label>
-                <input id="tempo" type="range" name="tempo" min="0" max="100" onInput={this.handleTempoChange}/>
+                {/* <label>Danceability</label>
+                <input id="danceability" type="range" name="danceability" min="0" max="100" onInput={this.handleDanceabilityChange}/> */}
+                {/* <label>Tempo</label>
+                <input id="tempo" type="range" name="tempo" min="0" max="100" onInput={this.handleTempoChange}/> */}
                 <label>Positivity</label>
                 <input id="positivity" type="range" name="positivity" min="0" max="100" onInput={this.handlePositivityChange}/>
                 <button onClick={this.handleButtonClick}>Generate Playlist</button> 

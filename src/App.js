@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import logo from './assets/images/music-logo.png'
 import './App.css';
 import MoodSelectionFormContainer from './components/MoodSelectionFormContainer'
 
@@ -8,8 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <a href="/"><img src={logo} className="App-logo" alt="logo" /></a>
+          <h1 className="App-title">Moodify</h1>
         </header>
           <MoodSelectionFormContainer />
       </div>

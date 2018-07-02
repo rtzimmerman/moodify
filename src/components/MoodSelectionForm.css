@@ -4,3 +4,11 @@
     width: 20%;
     margin: auto;
 }
+
+.mood-selection-form select {
+    margin: 2rem;
+}
+
+.mood-selection-form input {
+    margin: 2rem;
+}
