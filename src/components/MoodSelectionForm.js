@@ -43,13 +43,12 @@ class MoodSelectionForm extends Component {
     }
 
     handleButtonClick = () => {
-        console.log(this.state);
         const accessToken = 'BQC0ttTSH52sE5g5TRkAC0VaCIPyuHmfFGKgViSFZl87PBgsaABXz4gt-sfyAXhQQCSDJECudtzKP_mBCpKnw1_Cyui8ZXPHyqAL5bqzb31NxSHC9dSXmgLA71f00qpsyv-7vVFrWrpCQslgP7VVx-xen-490Gv2eXA';
 
         const baseUrl = 'https://api.spotify.com/v1/recommendations';
         var config = {
             headers: {
-              'Authorization': 'Bearer ' + accessToken,
+              'Authorization': 'Bearer ' + this.props.accessToken,
               'Content-Type': 'application/x-www-form-urlencoded'
             }
         };
@@ -73,7 +72,12 @@ class MoodSelectionForm extends Component {
             this.setState({tracks: response.data.tracks})
         })
         .catch((error) => {
-            console.log(error);
+            //TODO catch expired token error and callback
+            if(error.response.data.error.message){
+                console.log(error.response.data.error.message);
+                error.response.data.error.message === 'The access token expired' ? this.props.refreshToken() : console.log(false);
+                
+            }
         });
     }
 
