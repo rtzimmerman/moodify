@@ -1,24 +1,38 @@
 .mood-selection-form {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    margin: auto;
-}
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto; }
 
 .mood-selection-form select {
-    margin: 2rem;
-}
+  margin: 2rem; }
 
 .mood-selection-form input {
-    margin: 2rem;
-}
+  margin: 2rem; }
 
-@media (max-width: 700px){
-    .mood-selection-form {
-        width: 100%;
-    }
-}
+@media (max-width: 700px) {
+  .mood-selection-form {
+    padding: 0;
+    width: 80%; } }
+ul {
+  padding: 0;
+  margin: 0; }
+  ul li {
+    list-style-type: none; }
 
-ul li {
-    list-style-type: none;
-}
+button {
+  background-color: #29ac8fb2;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 2rem;
+  width: 70%;
+  margin: auto; }
+
+/*# sourceMappingURL=MoodSelectionForm.css.map */

@@ -14,7 +14,7 @@ const Playlist = (props) => {
 
     return(
         <div>
-            <p>My Playlist</p>
+            <p>{props.tracks.length > 0 ? 'Your moody playlist: ': ''}</p>
             <ul>
                 {props.tracks ? renderPlaylist() : undefined}
             </ul>

@@ -61,11 +61,11 @@ class MoodSelectionForm extends Component {
         // `&seed_tracks=0c6xIDDpzE81m2q797ordA` +
         // `&max_popularity=1` +
         `&min_valence=${0}` +
-        `&max_valence=${this.state.positivity + 5}` +
-        `&target_valence=${this.state.positivity}` +
+        `&max_valence=${this.state.positivity / 100.00 + 5}` +
+        `&target_valence=${this.state.positivity / 100.00}` +
         `&min_energy=${0}` +
-        `&max_energy=${this.state.energy + 5}` +
-        `&target_energy=${this.state.energy}`
+        `&max_energy=${this.state.energy / 100.00  + 5}` +
+        `&target_energy=${this.state.energy / 100.00}`
         , httpConfig)
         .then((response) => {
             console.log(response.data.tracks);
