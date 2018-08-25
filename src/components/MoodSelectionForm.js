@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
+import Slider from 'react-rangeslider'
 import './MoodSelectionForm.css';
 import axios from 'axios';
 import Playlist from './Playlist';
+import 'react-rangeslider/lib/index.css'
 
 class MoodSelectionForm extends Component {
     constructor(props){
         super(props);
         this.state = {
             genre: 'acoustic',
-            energy: 0,
+            energy: 50,
             danceability: 0,
             tempo: 0,
-            positivity: 0,
+            positivity: 50,
             tracks: []
         }
     }
@@ -21,8 +23,7 @@ class MoodSelectionForm extends Component {
         this.setState({genre});
     }
 
-    handleEnergyChange = (event) => {
-        const energy = event.target.value / 100.000;
+    handleEnergyChange = (energy) => {
         this.setState({energy});
     }
 
@@ -37,8 +38,7 @@ class MoodSelectionForm extends Component {
         this.setState({tempo});
     }
 
-    handlePositivityChange = (event) => {
-        const positivity = event.target.value / 100.000;
+    handlePositivityChange = (positivity) => {
         this.setState({positivity});
     }
 
@@ -46,7 +46,7 @@ class MoodSelectionForm extends Component {
         const accessToken = 'BQC0ttTSH52sE5g5TRkAC0VaCIPyuHmfFGKgViSFZl87PBgsaABXz4gt-sfyAXhQQCSDJECudtzKP_mBCpKnw1_Cyui8ZXPHyqAL5bqzb31NxSHC9dSXmgLA71f00qpsyv-7vVFrWrpCQslgP7VVx-xen-490Gv2eXA';
 
         const baseUrl = 'https://api.spotify.com/v1/recommendations';
-        var config = {
+        var httpConfig = {
             headers: {
               'Authorization': 'Bearer ' + this.props.accessToken,
               'Content-Type': 'application/x-www-form-urlencoded'
@@ -66,7 +66,7 @@ class MoodSelectionForm extends Component {
         `&min_energy=${0}` +
         `&max_energy=${this.state.energy + 5}` +
         `&target_energy=${this.state.energy}`
-        , config)
+        , httpConfig)
         .then((response) => {
             console.log(response.data.tracks);
             this.setState({tracks: response.data.tracks})
@@ -94,14 +94,27 @@ class MoodSelectionForm extends Component {
                 <select id="genrePicklist" onChange={this.handleGenreChange}>
                     {this.renderGenres()}
                 </select>
+                
                 <label>Energy</label>
-                <input id="energy" type="range" name="energy" min="0" max="100" onInput={this.handleEnergyChange}/>
+                <Slider
+                    value={this.state.energy}
+                    def
+                    orientation="horizontal"
+                    onChange={this.handleEnergyChange}
+                />
+                {/* <input id="energy" type="range" name="energy" min="0" max="100" onInput={this.handleEnergyChange}/> */}
                 {/* <label>Danceability</label>
                 <input id="danceability" type="range" name="danceability" min="0" max="100" onInput={this.handleDanceabilityChange}/> */}
                 {/* <label>Tempo</label>
                 <input id="tempo" type="range" name="tempo" min="0" max="100" onInput={this.handleTempoChange}/> */}
                 <label>Positivity</label>
-                <input id="positivity" type="range" name="positivity" min="0" max="100" onInput={this.handlePositivityChange}/>
+                <Slider
+                    value={this.state.positivity}
+                    def
+                    orientation="horizontal"
+                    onChange={this.handlePositivityChange}
+                />
+                {/* <input id="positivity" type="range" name="positivity" min="0" max="100" onInput={this.handlePositivityChange}/> */}
                 <button onClick={this.handleButtonClick}>Generate Playlist</button> 
                 <Playlist tracks={this.state.tracks}/>   
             </div>
