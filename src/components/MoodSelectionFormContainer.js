@@ -32,7 +32,7 @@ class MoodSelectionFormContainer extends Component {
     }
 
     getRefreshToken = () => {
-        const refreshUrl = 'http://delicat-vin-94241.herokuapp.com/refresh?refresh_token=AQCQuPqcWt3Hbe1WNo8rocuAJzsUmzR5cO7P1TghlQiMGJheNg1BEod8X1Va46_0Ppf8MER5xmLm0x7jECHzfnrnBMqZM8P1rr7CUwiVmg3320If41SZnV-oC6XAPpSdGCI';
+        const refreshUrl = 'https://delicat-vin-94241.herokuapp.com/refresh?refresh_token=AQCQuPqcWt3Hbe1WNo8rocuAJzsUmzR5cO7P1TghlQiMGJheNg1BEod8X1Va46_0Ppf8MER5xmLm0x7jECHzfnrnBMqZM8P1rr7CUwiVmg3320If41SZnV-oC6XAPpSdGCI';
 
         // Make a request for list of genres
         axios.get(refreshUrl)
