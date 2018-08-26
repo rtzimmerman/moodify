@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Slider from 'react-rangeslider'
 import './MoodSelectionForm.css';
 import axios from 'axios';
-import Playlist from './Playlist';
+import Playlist from '../Playlist/Playlist';
 import 'react-rangeslider/lib/index.css'
 
 class MoodSelectionForm extends Component {

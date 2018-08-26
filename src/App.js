@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import logo from './assets/images/music-logo.png'
 import './App.css';
-import MoodSelectionFormContainer from './components/MoodSelectionFormContainer'
+import MoodSelectionFormContainer from './components/MoodSelectionForm/MoodSelectionFormContainer';
+import Footer from './components/Footer/Footer'
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <h1 className="App-title">Moodify</h1>
         </header>
           <MoodSelectionFormContainer />
+          <Footer />
       </div>
     );
   }
