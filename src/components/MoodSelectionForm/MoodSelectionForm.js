@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Slider from 'react-rangeslider'
 import './MoodSelectionForm.css';
 import axios from 'axios';
-import Playlist from '../Playlist/Playlist';
+import PlaylistContainer from '../Playlist/PlaylistContainer';
 import 'react-rangeslider/lib/index.css'
 
 class MoodSelectionForm extends Component {
@@ -116,7 +116,7 @@ class MoodSelectionForm extends Component {
                 />
                 {/* <input id="positivity" type="range" name="positivity" min="0" max="100" onInput={this.handlePositivityChange}/> */}
                 <button onClick={this.handleButtonClick}>Generate Playlist</button> 
-                <Playlist tracks={this.state.tracks}/>   
+                <PlaylistContainer tracks={this.state.tracks}/>   
             </div>
         );
     }
