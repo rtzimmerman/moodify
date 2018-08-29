@@ -1,4 +1,5 @@
 import React from 'react';
+import VideosContainer from './VideosContainer'
 
 const Playlist = (props) => {
     
@@ -6,7 +7,9 @@ const Playlist = (props) => {
         return props.tracks.map((track) =>{
             return( 
             <li key={track.id}>
+                <i className="fa fa-spotify"></i>
                 <a href={track.external_urls.spotify} target="_blank">{`${track.name} by ${track.artists[0].name}`}</a>
+                <VideosContainer track={track} />
             </li>
             );
         });
