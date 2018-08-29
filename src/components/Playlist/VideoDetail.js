@@ -16,7 +16,7 @@ const VideoDetail = props => {
         return <div>Loading...</div>;
     }
     const videoId = props.video.id.videoId;
-    const url = `http://www.youtube.com/embed/${videoId}`;
+    const url = `https://www.youtube.com/embed/${videoId}`;
 
 
     return(
