@@ -7,7 +7,7 @@ class MoodSelectionFormContainer extends Component {
         super(props);
 
         this.state = {
-            genres: ['glam-rock'],
+            genres: ['Loading...'],
             accessToken: '',
         }
     }
