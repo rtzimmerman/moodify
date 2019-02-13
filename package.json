@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "create-react-class": "^15.6.3",
+    "rc-slider": "^8.6.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-rangeslider": "^2.2.0",
