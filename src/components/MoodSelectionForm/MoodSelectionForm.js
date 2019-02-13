@@ -4,11 +4,6 @@ import './MoodSelectionForm.css';
 import axios from 'axios';
 import Playlist from '../Playlist/Playlist';
 import 'react-rangeslider/lib/index.css';
-import OtherSlider, { Range } from 'rc-slider';
-// We can just import Slider or Range to reduce bundle size
-// import Slider from 'rc-slider/lib/Slider';
-// import Range from 'rc-slider/lib/Range';
-import 'rc-slider/assets/index.css';
 
 class MoodSelectionForm extends Component {
     constructor(props){
@@ -99,9 +94,6 @@ class MoodSelectionForm extends Component {
                     orientation="horizontal"
                     onChange={this.handlePositivityChange}
                 />
-                <div className="other-slider">
-                    <OtherSlider />
-                </div>
                 {/* <input id="positivity" type="range" name="positivity" min="0" max="100" onInput={this.handlePositivityChange}/> */}
                 <button onClick={this.handleButtonClick}>Generate Playlist</button> 
                 <Playlist tracks={this.state.tracks}/>   
