@@ -49,8 +49,6 @@ class MoodSelectionFormContainer extends Component {
     
     componentWillMount(){
         this.getRefreshToken();
-        
-        
     }
 
     render(){

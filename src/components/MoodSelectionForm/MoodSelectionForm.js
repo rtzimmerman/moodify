@@ -43,35 +43,15 @@ class MoodSelectionForm extends Component {
     }
 
     handleButtonClick = () => {
-        const accessToken = 'BQC0ttTSH52sE5g5TRkAC0VaCIPyuHmfFGKgViSFZl87PBgsaABXz4gt-sfyAXhQQCSDJECudtzKP_mBCpKnw1_Cyui8ZXPHyqAL5bqzb31NxSHC9dSXmgLA71f00qpsyv-7vVFrWrpCQslgP7VVx-xen-490Gv2eXA';
+ 
+        const baseUrl = 'https://moodify-backend.herokuapp.com/recommendations';
 
-        const baseUrl = 'https://api.spotify.com/v1/recommendations';
-        var httpConfig = {
-            headers: {
-              'Authorization': 'Bearer ' + this.props.accessToken,
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        };
-        //// &max_danceability=${this.state.danceability}
-        // Make a request for list of genres
-        axios.get(`${baseUrl}?limit=10` +
-        `&market=US` +
-        // `&seed_artists=4NHQUGzhtTLFvgF5SZesLK` +
-        `&seed_genres=${this.state.genre}` +
-        // `&seed_tracks=0c6xIDDpzE81m2q797ordA` +
-        // `&max_popularity=1` +
-        `&min_valence=${0}` +
-        `&max_valence=${this.state.positivity / 100.00 + 5}` +
-        `&target_valence=${this.state.positivity / 100.00}` +
-        `&min_energy=${0}` +
-        `&max_energy=${this.state.energy / 100.00  + 5}` +
-        `&target_energy=${this.state.energy / 100.00}`
-        , httpConfig)
+        axios.get(`${baseUrl}?positivity=${this.state.positivity}&energy=${this.state.energy}&genre=${this.state.genre}`)
         .then((response) => {
-            console.log(response.data.tracks);
-            this.setState({tracks: response.data.tracks})
+            this.setState({tracks: response})
         })
         .catch((error) => {
+            console.log(error);
             //TODO catch expired token error and callback
             if(error.response.data.error.message){
                 console.log(error.response.data.error.message);

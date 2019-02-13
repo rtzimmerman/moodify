@@ -2,9 +2,8 @@ import React from 'react';
 import VideosContainer from './VideosContainer'
 
 const Playlist = (props) => {
-    
     const renderPlaylist = () => {
-        return props.tracks.map((track) =>{
+        return props.tracks.data.map((track) =>{
             return( 
             <li key={track.id}>
                 <i className="fa fa-spotify"></i>
@@ -14,12 +13,11 @@ const Playlist = (props) => {
             );
         });
     }
-
     return(
         <div>
             <p>{props.tracks.length > 0 ? 'Your moody playlist: ': ''}</p>
             <ul>
-                {props.tracks ? renderPlaylist() : undefined}
+                {props.tracks.data ? renderPlaylist() : undefined}
             </ul>
         </div>
     );
